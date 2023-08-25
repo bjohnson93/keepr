@@ -4,16 +4,17 @@
   </header>
   <main>
     <router-view />
+
+    <ActiveKeepModal/>
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import ActiveKeepModal from "./components/ActiveKeepModal.vue"
+import { Keep } from "./models/Keep.js"
 
 export default {
   setup() {
@@ -21,7 +22,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, ActiveKeepModal }
 }
 </script>
 <style lang="scss">
@@ -30,11 +31,38 @@ export default {
 :root{
   --main-height: calc(100vh - 32px - 64px);
 }
+colors{
+  color: #C5BAE0;
+  color: #443331;
+  color: #2D2D2D;
+  color: #E9D8D6;  
+  color: #DDD5E0;
+  color: #F2E1D9;
+  color: #FAF4FC;
+  color: #DED6E9;
+  color: #FEF6F0;
+  color: #877A8F;
+  color: #919191;
+}
 
+main{
+  background-color: #FEF6F0;
+  color: #2D2D2D;
+}
 
-footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
+.home-button{
+  background-color: #E9D8D6;
+}
+
+.dark-button{
+  background-color: #877A8F;
+  color: #FAF4FC;
+}
+.drop-downs{
+  background-color: #DED6E9;
+}
+.image-text{
+  color: #FAF4FC;
+  text-shadow: 1px 1px 5px #443331;
 }
 </style>
