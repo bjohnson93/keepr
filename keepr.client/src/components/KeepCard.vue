@@ -1,8 +1,11 @@
 <template>
-  <div @click="setActiveKeep(keep.id)" data-bs-toggle="modal" data-bs-target="#keepModal" title="see the details of this keep" :style="{'background-image': `url(${keep?.img})`}" class="m-auto rounded keep-card img-fluid elevation-5 d-flex align-items-end justify-content-between p-3 selectable">
-            <p class="fs-3 image-text ps-2 fw-bolder">{{ keep.name }}</p>
-              <img :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name" class="avatar elevation-5">
+  <div @click="setActiveKeep(keep.id)" data-bs-toggle="modal" data-bs-target="#keepModal" title="see the details of this keep" :style="{'background-image': `url(${keep?.img})`}" class="m-auto rounded keep-card img-fluid elevation-5 d-flex flex-sm-column align-items-end justify-content-between p-3 selectable">
+    
+
+      <p class="fs-3 image-text ps-2 fw-bolder">{{ keep.name }}</p>
+        <img :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name" class="avatar elevation-5">
         </div>
+
 </template>
 
 

@@ -4,6 +4,7 @@
       <div class="col-6 col-md-3 mb-4" v-for="keep in keeps" :key="keep.id">
 
         <KeepCard :keep="keep"/>
+        <ActiveKeepModal/>
 
       </div>
     </section>
@@ -16,6 +17,7 @@ import { keepsService } from "../services/KeepsService.js"
 import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js"
 import KeepCard from "../components/KeepCard.vue";
+import ActiveKeepModal from "../components/ActiveKeepModal.vue";
 
 export default {
     setup() {
@@ -34,7 +36,7 @@ export default {
             keeps: computed(() => AppState.keeps)
         };
     },
-    components: { KeepCard }
+    components: { KeepCard, ActiveKeepModal }
 }
 </script>
 

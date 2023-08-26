@@ -6,10 +6,10 @@
           <div class="modal-body">
             <section class="row">
 
-          <div class="col-6 p-0">
+          <div class="col-12 col-md-6 p-0">
             <img :src="keep.img" :alt="keep.name" class="img-fluid rounded-top rounded-bottom keep-img">
           </div>
-            <div class="col-6 d-flex flex-column justify-content-evenly align-content-center">
+            <div class="col-12 col-md-6 d-flex flex-column justify-content-evenly align-content-center">
               <section class="row">
                 <div class="fs-4 d-flex justify-content-center col-12">
                   <div class="me-3 mb-4">
@@ -21,7 +21,7 @@
                 </div>
               </section>
               <section class="row">
-                <div class="col-12">
+                <div class="col-12 p-2">
                   <p class="fs-3 text-center fw-bold">{{ keep.name }}</p>
                   <p>{{ keep.description }}</p>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="mt-4 d-flex justify-content-between col-12">
                   <p class="fs-4">create</p>
                   <button class="px-4 btn fs-4 dark-button image-text elevation-5 fw-bolder">save</button>
-                  <div :title="`see the page for ${keep.creator.name}`" class="d-flex align-items-center">
+                  <div :title="`see the page for ${keep.creator.name}`" class="d-flex align-items-center p-2">
                     <img :src="keep.creator.picture" :alt="keep.creator.name" class="avatar elevation-5">
                     <p class="ms-2 fw-bolder">{{ keep.creator.name }}</p>
                   </div>
@@ -54,16 +54,16 @@ import { AppState } from "../AppState.js";
 
 export default {
   setup(){
-    async function getKeepById(){
-      try 
-      {
-        // let keepId = 
-      }
-      catch (error)
-      {
-        Pop.error(error.message)
-      }
-    }
+    // async function getKeepById(){
+    //   try 
+    //   {
+    //     // let keepId = 
+    //   }
+    //   catch (error)
+    //   {
+    //     Pop.error(error.message)
+    //   }
+    // }
     return {
       keep: computed(() => AppState.activeKeep)
     }

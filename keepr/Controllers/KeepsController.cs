@@ -90,7 +90,7 @@ public class KeepsController : ControllerBase
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       _keepsService.RemoveKeep(keepId, userInfo.Id);
-      return Ok("Recipe was deleted");
+      return Ok("Keep was deleted");
     }
     catch (Exception e)
     {

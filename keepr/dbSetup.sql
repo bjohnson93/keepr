@@ -23,3 +23,17 @@ CREATE TABLE IF NOT EXISTS keeps(
 DROP TABLE keeps;
 
 INSERT INTO keeps(name, description, img, view, kept);
+
+CREATE TABLE IF NOT EXISTS vaults(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  name VARCHAR(30) NOT NULL,
+  description VARCHAR(400) NOT NULL,
+  img VARCHAR(500) NOT NULL,
+  isPrivate BOOLEAN default false,
+  creatorId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (creatorID) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+DROP TABLE vaults;
