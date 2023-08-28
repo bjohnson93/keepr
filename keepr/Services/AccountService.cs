@@ -13,6 +13,10 @@ public class AccountService
   {
     return _repo.GetByEmail(email);
   }
+  internal Profile GetUsersProfile(string profileId)
+  {
+    return _repo.GetUsersProfile(profileId);
+  }
 
   internal Account GetOrCreateProfile(Account userInfo)
   {
@@ -31,4 +35,6 @@ public class AccountService
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
     return _repo.Edit(original);
   }
+
+
 }

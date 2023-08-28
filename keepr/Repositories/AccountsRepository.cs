@@ -14,12 +14,17 @@ public class AccountsRepository
     string sql = "SELECT * FROM accounts WHERE email = @userEmail";
     return _db.QueryFirstOrDefault<Account>(sql, new { userEmail });
   }
-
+  internal Profile GetUsersProfile(string profileId)
+  {
+    string sql = "SELECT * FROM accounts WHERE id = @profileId";
+    return _db.QueryFirstOrDefault<Profile>(sql, new { profileId });
+  }
   internal Account GetById(string id)
   {
     string sql = "SELECT * FROM accounts WHERE id = @id";
     return _db.QueryFirstOrDefault<Account>(sql, new { id });
   }
+
 
   internal Account Create(Account newAccount)
   {
@@ -43,5 +48,7 @@ public class AccountsRepository
     _db.Execute(sql, update);
     return update;
   }
+
+
 }
 

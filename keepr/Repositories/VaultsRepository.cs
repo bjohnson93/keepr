@@ -40,10 +40,10 @@ public class VaultsRepository
     Vault vault = _db.Query<Vault, Profile, Vault>(
       sql,
       (vault, profile) =>
-      {
-        vault.Creator = profile;
-        return vault;
-      },
+    {
+      vault.Creator = profile;
+      return vault;
+    },
       new { vaultId }
       ).FirstOrDefault();
     return vault;

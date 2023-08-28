@@ -38,6 +38,14 @@ public class KeepsService
     return keeps;
   }
 
+  internal List<Keep> GetUsersKeeps(string profileId)
+  {
+    List<Keep> keeps = _keepsRepository.GetUsersKeeps(profileId);
+
+    // keeps = keeps.FindAll(keep => keep.CreatorId == profileId);
+    return keeps;
+  }
+
   internal void RemoveKeep(int keepId, string userId)
   {
     Keep keep = GetKeepById(keepId);

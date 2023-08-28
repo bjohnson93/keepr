@@ -22,6 +22,11 @@ public class VaultsService
     return vault;
   }
 
+  internal List<Vault> GetUsersVaults(string profileId)
+  {
+    throw new NotImplementedException();
+  }
+
   internal Vault GetVaultById(int vaultId, string userId = null)
   {
     Vault vault = _vaultsRepository.GetVaultById(vaultId);
