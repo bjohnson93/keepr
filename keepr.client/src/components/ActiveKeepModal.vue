@@ -30,10 +30,12 @@
                 <div class="mt-4 d-flex justify-content-between col-12">
                   <p class="fs-4">create</p>
                   <button class="px-4 btn fs-4 dark-button image-text elevation-5 fw-bolder">save</button>
+                  <router-link :to="{name: 'Profile Page', params: {profileId: keep.creatorId}}">
                   <div :title="`see the page for ${keep.creator.name}`" class="d-flex align-items-center p-2">
                     <img :src="keep.creator.picture" :alt="keep.creator.name" class="avatar elevation-5">
                     <p class="ms-2 fw-bolder">{{ keep.creator.name }}</p>
                   </div>
+                </router-link>
                 </div>
               </section>
             </div>

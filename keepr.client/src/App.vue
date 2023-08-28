@@ -48,8 +48,17 @@ main{
   color: #2D2D2D;
 }
 
+.darkest-button{
+  background-color: #2D2D2D;
+  color: #FEF6F0;
+}
+
 .home-button{
   background-color: #E9D8D6;
+}
+.lavender-button{
+  background-color: #C5BAE0;
+  color: #2D2D2D;
 }
 
 .dark-button{

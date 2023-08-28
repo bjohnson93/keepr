@@ -12,24 +12,34 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn  fw-bolder selectable">
-            Create
-          </router-link>
+          <div class="dropdown">
+  <button class="btn fw-bolder dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    create
+  </button>
+  <ul class="dropdown-menu lavender-button" aria-labelledby="dropdownMenuButton1">
+    <li><button class="btn dropdown-item lavender-button fw-bolder" data-bs-toggle="modal" data-bs-target="#newKeepModal">new keep</button></li>
+    <li><button class="btn dropdown-item lavender-button fw-bolder" data-bs-toggle="modal" data-bs-target="#newVaultModal">new vault</button></li>
+  </ul>
+</div>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
+  <NewKeepModal/>
+  <NewVaultModal/>
 </template>
 
 <script>
 import Login from './Login.vue';
+import NewKeepModal from "./NewKeepModal.vue";
+import NewVaultModal from "./NewVaultModal.vue";
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, NewKeepModal, NewVaultModal }
 }
 </script>
 
