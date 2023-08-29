@@ -80,7 +80,6 @@ public class KeepsRepository
         FROM keeps k
         JOIN accounts acc ON acc.id = k.creatorId
         WHERE k.creatorId = @profileId
-        GROUP BY acc.id;
         ;";
 
     List<Keep> keeps = _db.Query<Keep, Profile, Keep>(
@@ -89,20 +88,12 @@ public class KeepsRepository
       {
         keep.Creator = profile;
         return keep;
-      }
+      }, new { profileId }
     ).ToList();
     return keeps;
   }
 
-  //  SELECT 
-  //       k.*,
-  //       pro.*,
-  //       acc.*
-  //       FROM keeps k
-  //       JOIN profiles pro ON k.creatorId = pro.id
-  //       JOIN accounts acc ON acc.id = k.creatorId
-  //       WHERE k.creatorId = @profileId
-  //       ;";
+
 
   internal void RemoveKeep(int keepId)
   {

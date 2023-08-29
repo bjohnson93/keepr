@@ -9,6 +9,7 @@ public class VaultsService
 {
   private readonly VaultsRepository _vaultsRepository;
 
+
   public VaultsService(VaultsRepository vaultsRepository)
   {
     _vaultsRepository = vaultsRepository;
@@ -22,9 +23,19 @@ public class VaultsService
     return vault;
   }
 
-  internal List<Vault> GetUsersVaults(string profileId)
+  internal List<Vault> GetMyVaults(string userId)
   {
-    throw new NotImplementedException();
+    List<Vault> vaults = _vaultsRepository.GetMyVaults(userId);
+    return vaults;
+  }
+
+  internal List<Vault> GetUsersVaults(string profileId, string userId)
+  {
+    List<Vault> vaults = _vaultsRepository.GetUsersVaults(profileId);
+
+    vaults = vaults.FindAll(vault => vault.IsPrivate == false || vault.CreatorId == userId);
+
+    return vaults;
   }
 
   internal Vault GetVaultById(int vaultId, string userId = null)

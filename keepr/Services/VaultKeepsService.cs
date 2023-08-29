@@ -24,6 +24,9 @@ public class VaultKeepsService
       throw new Exception("YOU CAN'T CREATE A KEEP ON A VAULT THAT ISN'T YOURS!");
     }
     VaultKeep vaultKeep = _vaultKeepsRepository.CreateVaultKeep(vaultKeepData);
+    // KeepInVault keepInVault = GetVaultKeepById(vaultKeepData.Id);
+    // keepInVault.Kept++;
+    // _keep
     return vaultKeep;
   }
 
