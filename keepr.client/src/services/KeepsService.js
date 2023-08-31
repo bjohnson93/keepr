@@ -10,16 +10,37 @@ class KeepsService {
   }
   async getKeeps() {
     const res = await api.get('api/keeps')
-    // logger.log(res.data)
+    logger.log(res.data)
     AppState.keeps = res.data.map(k => new Keep(k))
   }
-
+  async getKeepById(keepId) {
+    const res = await api.get(`api/keeps/${keepId}`)
+  }
   async createKeep(keepData) {
     const res = await api.post('api/keeps', keepData)
     logger.log('[NEW KEEP...]', res.data)
     const keep = new Keep(res.data)
     AppState.keeps.push(keep)
   }
+
+  async getUsersKeeps(profileId) {
+    const res = await api.get(`api/profiles/${profileId}/keeps`)
+    logger.log('[GETTING USERS KEEPS...]', res.data)
+    if (profileId == AppState.account.id) {
+      AppState.myKeeps = res.data.map(k => new Keep(k))
+    }
+    AppState.usersKeeps = res.data.map(k => new Keep(k))
+  }
+
+  async deleteMyKeep(keepId) {
+    const res = await api.delete(`api/keeps/${keepId}`)
+    AppState.keeps = AppState.keeps.filter(k => k.id != keepId)
+  }
+  // async getMyKeeps(profileId) {
+  //   const res = await api.get(`api/profiles/${profileId}/keeps`)
+  //   logger.log(res.data)
+  //   AppState.myKeeps = res.data.map(k => new Keep(k))
+  // }
 }
 
 export const keepsService = new KeepsService()

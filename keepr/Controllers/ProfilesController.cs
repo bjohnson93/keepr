@@ -64,4 +64,20 @@ public class ProfilesController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpPut]
+  [Authorize]
+  public async Task<ActionResult<Account>> Edit([FromBody] Account accountData)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account account = _accountService.Edit(accountData, userInfo.Email);
+      return Ok(account);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }

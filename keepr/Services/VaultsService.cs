@@ -26,6 +26,9 @@ public class VaultsService
   internal List<Vault> GetMyVaults(string userId)
   {
     List<Vault> vaults = _vaultsRepository.GetMyVaults(userId);
+
+    vaults = vaults.FindAll(vault => vault.IsPrivate == false || vault.CreatorId == userId);
+
     return vaults;
   }
 
@@ -54,7 +57,7 @@ public class VaultsService
 
   internal void RemoveVault(int vaultId, string userId)
   {
-    Vault vault = GetVaultById(vaultId);
+    Vault vault = GetVaultById(vaultId, userId);
     if (vault.CreatorId != userId)
     {
       throw new Exception("NOT YOUR VAULT TOD DELETE!");

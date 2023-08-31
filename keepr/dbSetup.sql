@@ -7,6 +7,9 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture',
 ) default charset utf8 COMMENT '';
 
+ALTER TABLE accounts
+ADD coverImg VARCHAR(500) DEFAULT 'https://images.unsplash.com/photo-1634843139496-9c16fdb8be56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhpa2luZyUyMGxhZHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60';
+
 CREATE TABLE IF NOT EXISTS profiles(
   id VARCHAR(255) NOT NULL,
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',

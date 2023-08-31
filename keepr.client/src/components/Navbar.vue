@@ -5,15 +5,18 @@
         <button class="home-button btn fw-bolder">Home</button>
       </div>
     </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    <!-- <img src="KeeprLogo" class="img-fluid" alt=""> -->
+
+    <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="dark-button rounded navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
+          
           <div class="dropdown">
-  <button class="btn fw-bolder dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  <button v-if="account" class="btn fw-bolder dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     create
   </button>
   <ul class="dropdown-menu lavender-button" aria-labelledby="dropdownMenuButton1">
@@ -32,20 +35,31 @@
 </template>
 
 <script>
+import { computed } from "vue";
+// import {KeeprLogo} from "../assets/img/KeeprLogo.jpg";
+import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import NewKeepModal from "./NewKeepModal.vue";
 import NewVaultModal from "./NewVaultModal.vue";
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account),
+      // KeeprLogo
+    }
   },
   components: { Login, NewKeepModal, NewVaultModal }
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet');
 a:hover {
   text-decoration: none;
+}
+
+.logo{
+  font-family: 'Dancing Script', cursive;
 }
 .navbar{
   background-color: #FEF6F0;

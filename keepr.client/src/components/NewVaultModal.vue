@@ -1,6 +1,6 @@
 <template>
 
- <div class="modal fade" id="newVaultModal" tabindex="-1" aria-labelledby="newVaultModal" aria-hidden="true">
+ <div class="modal fade" id="newVaultModal" tabindex="-1" title="modal for new vault" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content bg-white">
       <div class="modal-header border-0 ms-2">
@@ -23,8 +23,8 @@
             <div>
 
               <p class="text-secondary small-text m-auto ">Private Vaults can only be seen by you</p>
-              <input v-model="editable.isPrivate" class="form-check-input border-0" type="checkbox" id="privateCheck" title="make vault private?">
-              <label for="privateCheck" class="form-check-label">
+              <input v-model="editable.isPrivate" class="form-check-input border-0" type="checkbox" id="make-it-private" title="make vault private?">
+              <label for="private" class="form-check-label">
                 Make Vault Private?
               </label>
             </div>
@@ -45,6 +45,7 @@ import { ref, watchEffect } from "vue";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 import { vaultsService } from "../services/VaultsService.js";
+import { Modal } from "bootstrap";
 
 export default {
   setup(){
@@ -57,6 +58,8 @@ export default {
         const vaultData = editable.value
         // logger.log('[CREATING VAULT...]', vaultData)
         await vaultsService.createVault(vaultData)
+        editable.value = {}
+        Modal.getOrCreateInstance('#newVaultModal').hide()
         }
         catch (error)
         {

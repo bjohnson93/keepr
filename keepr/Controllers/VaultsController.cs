@@ -37,13 +37,14 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-  // --*FIXME - will have to come back and make below asynchronous and check for userId or null for private vaults....
+
   [HttpGet("{vaultId}")]
-  public ActionResult<Vault> GetVaultById(int vaultId)
+  public async Task<ActionResult<Vault>> GetVaultById(int vaultId)
   {
     try
     {
-      Vault vault = _vaultsService.GetVaultById(vaultId);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Vault vault = _vaultsService.GetVaultById(vaultId, userInfo?.Id);
       return Ok(vault);
     }
     catch (Exception e)

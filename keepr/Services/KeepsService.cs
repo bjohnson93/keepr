@@ -29,9 +29,20 @@ public class KeepsService
     keep.Views++;
 
     _keepsRepository.UpdateKeep(keep);
+
     return keep;
   }
 
+  internal Keep GetKeepByIdAndIncreaseKeptCount(int keepId, string userId)
+  {
+    Keep keep = GetKeepById(keepId, userId);
+
+    keep.Kept++;
+
+    _keepsRepository.UpdateKeep(keep);
+
+    return keep;
+  }
   internal Keep GetKeepById(int keepId, string userId = null)
   {
     Keep keep = _keepsRepository.GetKeepById(keepId);
@@ -83,4 +94,11 @@ public class KeepsService
     // Keep updatedKeep = GetKeepById(originalKeep.Id);
     return originalKeep;
   }
+
+
+  // internal List<Keep> GetMyKeeps(string userId)
+  // {
+  //   List<Keep> keeps = _keepsRepository.GetMyKeeps(userId);
+  //   return keeps;
+  // }
 }

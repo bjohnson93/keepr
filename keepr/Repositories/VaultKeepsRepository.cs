@@ -45,7 +45,9 @@ public class VaultKeepsRepository
       sql,
       (vaultKeep, keep, profile) =>
       {
+        keep.VaultId = vaultKeep.VaultId;
         keep.VaultKeepId = vaultKeep.Id;
+        keep.KeepId = vaultKeep.KeepId;
         keep.Creator = profile;
         return keep;
       }, new { vaultId }
