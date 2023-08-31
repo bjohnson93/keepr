@@ -18,12 +18,17 @@
         </div>
     </section>
 
-<!-- //FIXME - need to change keep card in vault to be a VAULT KEEP, and have a DELETE VAULT KEEP function -->
         <section class="row d-flex justify-content-center align-items-center">
           <div class="col-md-9 col-12">
             <section class="row">
-              <div @click="openKeepCard()" class="col-6 col-md-3 mb-4" v-for="keep in keeps" :key="keep.id">
-                <KeepCard :keep="keep"/>
+              <div class="col-6 col-md-3 mb-4" v-for="keep in keeps" :key="keep.id">
+                <div v-if="keep.creator.id == account.id" class="text-end">
+                  <i role="button" title="Remove Keep From Vault" @click="deleteKeepFromVault(keep.vaultKeepId)" class="mdi mdi-close-circle-outline text-danger fs-4"> </i>
+                </div>
+                <!-- <VaultKeepCard :keep="keep"/> -->
+                <div @click="openKeepCard()">
+                  <KeepCard :keep="keep"/>
+                </div>
               </div>
             </section>
           </div>
@@ -37,16 +42,23 @@
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop.js";
 import { vaultsService } from "../services/VaultsService.js";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watchEffect } from "vue";
 import { AppState } from "../AppState.js";
 import {vaultKeepsService} from "../services/VaultKeepsService.js"
 import KeepCard from "../components/KeepCard.vue";
 import { router } from "../router.js";
 import { Modal } from "bootstrap";
+import { logger } from "../utils/Logger.js";
 
 export default {
     setup() {
         const route = useRoute();
+        watchEffect(() => {
+          // AppState.vaultKeeps
+          // AppState.myKeeps
+          AppState.myVaults
+          // getKeepsByVaultId()
+        })
         onMounted(() => {
             route.params.vaultId;
             getVaultById();
@@ -75,13 +87,30 @@ export default {
         }
         return {
             vault: computed(() => AppState.activeVault),
+            account: computed(() => AppState.account),
             keeps: computed(() => AppState.vaultKeeps),
             openKeepCard(){
               Modal.getOrCreateInstance("#keepModal").show()
-            }
+            },
+            async deleteKeepFromVault(vaultKeepId){
+              try 
+              {
+                const wantsToDelete = await Pop.confirm("Are you sure you want to remove the keep from this vault?")
+                if(!wantsToDelete){
+                  return
+                }
+                await vaultKeepsService.deleteKeepFromVault(vaultKeepId)
+                Pop.toast("You successfully removed the keep from your vault!")
+                Modal.getOrCreateInstance('#keepModal').hide()
+              }
+              catch (error)
+              {
+                Pop.error(error.message)
+              }
+            },
         };
     },
-    components: { KeepCard }
+    components: {  KeepCard }
 }
 </script>
 

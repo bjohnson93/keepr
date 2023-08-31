@@ -1,5 +1,5 @@
 <template>
-  <div v-if="account" class="container-fluid">
+  <div v-if="account.id" class="mt-3 container-fluid">
     <section class="row">
       <div class="col-12 d-flex justify-content-center align-items-center">
         <img :src="account.coverImg" class="cover-img rounded">
@@ -19,17 +19,19 @@
         </div>
       </div>
     </section>
-
+    <!-- vaults section -->
     <section class="row d-flex justify-content-center align-items-center mb-4">
-      <div class="col-md-9 col-12">
+      <div class="col-md-10 col-12">
         <h2 class="mb-4">Vaults</h2>
         <section class="row">
           <div class="col-6 col-md-3 mb-3" v-for="vault in myVaults" :key="vault.id">
+            <div class="text-end">
+              <i role="button" @click="deleteMyVault(vault.id)" v-if="account.id == vault.creatorId" class="mdi mdi-alpha-x-circle text-danger fs-5 delete-icon selectable" title="Delete Your Vault"></i>
+            </div>
             <router-link :to="{name: 'Vault Page', params: {vaultId: vault.id}}">
-              <div :style="{'background-image': `url(${vault?.img})`}" class="m-auto rounded vault-card img-fluid elevation-4 d-flex flex-sm-column align-items-end justify-content-between selectable">
-                <i role="button" @click="deleteMyVault(vault.id)" v-if="account.id == vault.creatorId" class="mdi mdi-alpha-x-circle text-danger fs-5 delete-icon selectable" title="Delete Your Vault"></i>
-                <p class="fs-4 image-text p-3 fw-bolder">{{ vault.name.toUpperCase() }}</p>
-              <i v-if="vault.isPrivate" class="mdi mdi-lock image-text fs-3 p-1"></i>
+              <div :style="{'background-image': `url(${vault?.img})`}" class="m-auto rounded vault-card img-fluid elevation-4 d-flex flex-sm-column align-items-end justify-content-between selectable" title="Go to this Vault's Page">
+                
+                <p class="fs-5 image-text p-3 fw-bolder">{{ vault.name.toUpperCase() }} <i v-if="vault.isPrivate" class="mdi mdi-lock image-text fs-5 p-0"></i></p>
             </div>
           </router-link>
           </div>
@@ -37,9 +39,9 @@
 
       </div>
     </section>
-
+    <!-- keeps section -->
     <section class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-9 col-12">
+      <div class="col-md-10 col-12">
         <h2 class="mb-4">Keeps</h2>
         <section class="row">
           <div @click="openKeepCard()" class="col-6 col-md-3 mb-4" v-for="keep in myKeeps" :key="keep.id">
@@ -76,9 +78,9 @@ export default {
     })
         watchEffect(() => {
           AppState.account
-          AppState.myKeeps
-          AppState.myVaults
-          AppState.keeps
+          // AppState.myKeeps
+          // AppState.myVaults
+          // AppState.keeps
         })
     async function getMyKeeps() {
             try {
@@ -138,8 +140,8 @@ export default {
 
 .vault-card{
   height: 25vh;
-  object-fit: cover;
-  object-position: center;
+  background-position: center;
+  background-size: cover;
 }
 
 

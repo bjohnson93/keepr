@@ -1,5 +1,5 @@
 <template>
-  <div v-if="profile" class="container-fluid">
+  <div v-if="profile" class="container-fluid mt-3">
     <section class="row">
       <div class="col-12 d-flex justify-content-center align-items-center">
         <img :src="profile.coverImg" :alt="profile.name" class="cover-img rounded">
@@ -19,27 +19,33 @@
         </div>
       </div>
     </section>
-
+    <!-- vaults section -->
     <section class="row d-flex justify-content-center align-items-center mb-4">
-      <div class="col-md-9 col-12">
+      <div class="col-md-10 col-12">
         <h2 class="mb-4">Vaults</h2>
         <section class="row">
           <div class="col-6 col-md-3 mb-3" v-for="vault in usersVaults" :key="vault.id">
+            <div class="text-end">
+              <i role="button" @click="deleteMyVault(vault.id)" v-if="account.id == vault.creator.id" class="mdi mdi-alpha-x-circle text-danger fs-5 delete-icon selectable" title="Delete Your Vault"></i>
+            </div>
             <router-link :to="{name: 'Vault Page', params: {vaultId: vault.id}}">
               <div :style="{'background-image': `url(${vault?.img})`}" class="m-auto rounded vault-card img-fluid elevation-4 d-flex flex-sm-column align-items-end justify-content-between selectable">
-                <i role="button" @click="deleteMyVault(vault.id)" v-if="account.id == vault.creatorId" class="mdi mdi-alpha-x-circle text-danger fs-5 delete-icon selectable" title="Delete Your Vault"></i>
-              <p class="fs-4 image-text p-3 fw-bolder">{{ vault.name.toUpperCase() }}</p>
-              <i v-if="vault.isPrivate" class="mdi mdi-lock image-text fs-3 p-1"></i>
+
+                <div>
+                  <p class="fs-5 image-text p-2 fw-bolder">{{ vault.name.toUpperCase() }} <i v-if="vault.isPrivate" class="mdi mdi-lock image-text fs-3 "></i></p>
+                  
+                </div>
+
             </div>
-          </router-link>
+        </router-link>
           </div>
         </section>
 
       </div>
     </section>
-
+    <!-- keeps section -->
     <section class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-9 col-12">
+      <div class="col-md-10 col-12">
         <h2 class="mb-4">Keeps</h2>
         <section class="row">
 
@@ -161,14 +167,14 @@ export default {
   object-position: center;
   border-radius: 50%;
   position: absolute;
-  top: 41vh;
+  top: 43vh;
   box-shadow: 2px 2px 10px gray;
 }
 
 .vault-card{
   height: 25vh;
-  object-fit: cover;
-  object-position: center;
+  background-position: center;
+  background-size: cover;
 }
 
 

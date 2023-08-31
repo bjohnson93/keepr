@@ -60,6 +60,7 @@ export default {
         await vaultsService.createVault(vaultData)
         editable.value = {}
         Modal.getOrCreateInstance('#newVaultModal').hide()
+        Pop.success("You created a new vault!")
         }
         catch (error)
         {

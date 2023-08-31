@@ -6,9 +6,9 @@ import { api } from "./AxiosService.js"
 
 class VaultKeepsService {
 
-  async setActiveVaultKeep(vaultKeep) {
-    AppState.activeVaultKeep = vaultKeep
-  }
+  // async setActiveVaultKeep(vaultKeep) {
+  //   AppState.activeVaultKeep = vaultKeep
+  // }
 
   // async getVaultKeepById(vaultKeepId){
   //   const res = await api.get(`api/`)
@@ -20,6 +20,12 @@ class VaultKeepsService {
 
   }
 
+  async deleteKeepFromVault(vaultKeepId) {
+    const res = await api.delete(`api/vaultkeeps/${vaultKeepId}`)
+    logger.log('[Deleting keep from vault?]', res.data)
+    AppState.vaultKeeps = AppState.vaultKeeps.filter(vk => vk.vaultKeepId != vaultKeepId)
+
+  }
   async createVaultKeep(vaultKeepData) {
     const res = await api.post('api/vaultKeeps', vaultKeepData)
     // FIXME look at your response data, it might not fit your model... try not doing anything with the response data maybe **fixed?**

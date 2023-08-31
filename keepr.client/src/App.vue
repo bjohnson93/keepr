@@ -53,6 +53,10 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Raleway&display=swap" rel="stylesheet');
+
+
+
 
 :root{
   --main-height: calc(100vh - 32px - 64px);
@@ -72,6 +76,7 @@ colors{
 }
 body{
   padding-right: 0;
+  font-family: 'Raleway', sans-serif;
 }
 
 main{
@@ -91,7 +96,9 @@ main{
   background-color: #C5BAE0;
   color: #2D2D2D;
 }
-
+.navbar-head{
+  font-family: 'Dancing Script', cursive;
+}
 .dark-button{
   background-color: #716778;
   font-weight: 600;

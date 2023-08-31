@@ -21,6 +21,7 @@ class KeepsService {
     logger.log('[NEW KEEP...]', res.data)
     const keep = new Keep(res.data)
     AppState.keeps.push(keep)
+    AppState.myKeeps = AppState.keeps
   }
 
   async getUsersKeeps(profileId) {

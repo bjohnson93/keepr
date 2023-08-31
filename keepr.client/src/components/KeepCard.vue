@@ -10,7 +10,6 @@
 
 <!-- --original div without masonry-- -->
   <div @click="setActiveKeep(keep.id)"  title="see the details of this keep" :style="{'background-image': `url(${keep?.img})`}" class="keep-card fluid m-auto rounded img-fluid elevation-5 d-flex flex-sm-column align-items-end justify-content-between p-3 selectable">
-    <i role="button" @click="deleteMyKeep(keep.id)" v-if="account.id == keep.creator.id" class="mdi mdi-alpha-x-circle text-danger fs-5 delete-icon" title="Delete Your Keep"></i>
 
 
       <p class="fs-md-3 fs-5 image-text fw-bolder mt-4">{{ keep.name }}</p>
@@ -48,30 +47,12 @@ export default {
           AppState.activeKeep.views++;
           const keepId = props.keep.id
           await keepsService.getKeepById(keepId)
-          // **FIXME - need function for get keep by id so it makes call to service/api!!!
         }
         catch (error)
         {
           Pop.error(error.message)
         }
       },
-      async deleteMyKeep(keepId){
-        try 
-        {
-          const wantsToDelete = await Pop.confirm("ARE YOU SURE YOU WANT TO DELETE?")
-          if(!wantsToDelete){
-            Modal.getOrCreateInstance('#keepModal').hide()
-            return
-          }
-          await keepsService.deleteMyKeep(keepId)
-          Pop.toast("You successfully deleted your keep!")
-          Modal.getOrCreateInstance('#keepModal').hide()
-        }
-        catch (error)
-        {
-          Pop.error(error.message)
-        }
-      }
     }
   }
 }

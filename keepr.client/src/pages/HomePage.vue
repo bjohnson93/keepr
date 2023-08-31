@@ -23,10 +23,10 @@ import { Modal } from "bootstrap";
 
 export default {
     setup() {
-      onUnmounted(() => {
-      Modal.getOrCreateInstance('#keepModal').hide()
+    //   onUnmounted(() => {
+    //   Modal.getOrCreateInstance('#keepModal').hide()
       
-    })
+    // })
         watchEffect(() => {
           getKeeps();
         })

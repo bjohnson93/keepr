@@ -16,7 +16,7 @@
         <li>
           
           <div class="dropdown">
-  <button v-if="account" class="btn fw-bolder dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  <button v-if="account.id" class="btn fw-bolder dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     create
   </button>
   <ul class="dropdown-menu lavender-button" aria-labelledby="dropdownMenuButton1">
@@ -30,8 +30,7 @@
       <Login />
     </div>
   </nav>
-  <NewKeepModal/>
-  <NewVaultModal/>
+
 </template>
 
 <script>

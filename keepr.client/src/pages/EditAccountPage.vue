@@ -1,5 +1,5 @@
 <template>
-  <div v-if="account" class="container-fluid">
+  <div v-if="account.id" class="container-fluid">
     
     <section class="row">
       <div class="col-12 p-0">

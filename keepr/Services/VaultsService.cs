@@ -32,7 +32,7 @@ public class VaultsService
     return vaults;
   }
 
-  internal List<Vault> GetUsersVaults(string profileId, string userId)
+  internal List<Vault> GetUsersVaults(string profileId, string userId = null)
   {
     List<Vault> vaults = _vaultsRepository.GetUsersVaults(profileId);
 

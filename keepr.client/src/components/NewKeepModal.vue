@@ -50,6 +50,7 @@ export default {
         await keepsService.createKeep(keepData)
         editable.value = {}
         Modal.getOrCreateInstance('#newKeepModal').hide()
+        Pop.success("You created a new keep!")
         }
         catch (error)
         {
