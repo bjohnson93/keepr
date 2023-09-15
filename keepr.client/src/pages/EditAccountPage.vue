@@ -60,8 +60,8 @@ export default {
   setup(){
     const editable = ref({})
     watchEffect(() => {
-      AppState.account
-      AppState.profile
+      // AppState.account
+      // AppState.profile
       editable.value = {...AppState.account}
     })
     return {
@@ -71,8 +71,8 @@ export default {
 
       async editAccount(){
         try {
-          const accountData = editable.value
-          await accountService.editAccount(accountData)
+          const body = editable.value
+          await accountService.editAccount(body)
           Pop.toast('Saved Changes', 'success', 'bottom-end')
           router.push({name: 'Account'})
         } catch (error) {
